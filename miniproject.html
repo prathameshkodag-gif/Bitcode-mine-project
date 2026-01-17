@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Computer Guess Game</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .game-box {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .game-box h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        #guess {
+            font-size: 32px;
+            color: #764ba2;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .low {
+            background: #38bdf8;
+        }
+
+        .low:hover {
+            background: #0284c7;
+        }
+
+        .correct {
+            background: #22c55e;
+        }
+
+        .correct:hover {
+            background: #15803d;
+        }
+
+        .high {
+            background: #f87171;
+        }
+
+        .high:hover {
+            background: #b91c1c;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-box">
+        <h2> Think of a number</h2>
+        <p class="note">(Between 1 and 100)</p>
+
+        <div id="guess">My Guess: 50</div>
+
+        <div class="buttons">
+            <button class="low" onclick="tooLow()">Too Low</button>
+            <button class="correct" onclick="correct()">Correct</button>
+            <button class="high" onclick="tooHigh()">Too High</button>
+        </div>
+
+        <p class="note">Guide the computer using buttons</p>
+    </div>
+
+    <script>
+        let min = 1;
+        let max = 100;
+        let guess = Math.floor((min + max) / 2);
+
+        document.getElementById("guess").innerText = "My Guess: " + guess;
+
+        function updateGuess() {
+            guess = Math.floor((min + max) / 2);
+            document.getElementById("guess").innerText = "My Guess: " + guess;
+        }
+
+        function tooLow() {
+            min = guess + 1;
+            updateGuess();
+        }
+
+        function tooHigh() {
+            max = guess - 1;
+            updateGuess();
+        }
+
+        function correct() {
+            alert(" I guessed it! Your number is " + guess);
+        }
+    </script>
+
+</body>
+</html>
